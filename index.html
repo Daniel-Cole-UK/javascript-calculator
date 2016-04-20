@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JavaScript Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Audiowide|Kreon:700' rel='stylesheet' type='text/css'>    
+    <link rel="stylesheet" href="style.css">  
+</head>
+<body>
+<div class="title">
+  <h1>JavaScript Calculator</h1>
+  <h2>By Daniel Cole</h2>
+</div>
+<div class="calculator">
+  <div id="screen">
+    <p id="top-left-screen-text"></p>
+    <p id="screen-text"></p>
+  </div>
+  <!--end of screen-->
+  <div id="button-container">
+    <div id="button-row-1" class="button-row">
+      <button type="input" class="buttons linear clear" value="clearAll">AC</button>
+      <button type="input" class="buttons linear clear" value="clearEvent">CE</button>
+      <button type="input" class="buttons linear action" value="percent">%</button>
+      <button type="input" class="buttons linear action" value="divide">/</button>
+    </div>
+    <!--end of button-row-1-->
+    <div id="button-row-2" class="button-row">
+      <button type="input" class="buttons linear number" value="7">7</button>
+      <button type="input" class="buttons linear number" value="8">8</button>
+      <button type="input" class="buttons linear number" value="9">9</button>
+      <button type="input" class="buttons linear action" value="multiply">X</button>
+    </div>
+    <!--end of button-row-2-->
+    <div id="button-row-3" class="button-row">
+      <button type="input" class="buttons linear number" value="4">4</button>
+      <button type="input" class="buttons linear number" value="5">5</button>
+      <button type="input" class="buttons linear number" value="6">6</button>
+      <button type="input" class="buttons linear action" value="minus">-</button>
+    </div>
+    <!--end of button-row-3-->
+    <button id="plus-button" type="input" class="buttons linear action" value="plus">+</button>
+    <div id="button-row-4" class="button-row">
+      <button type="input" class="buttons linear number" value="1">1</button>
+      <button type="input" class="buttons linear number" value="2">2</button>
+      <button type="input" class="buttons linear number" value="3">3</button>
+    </div>
+    <!--end of button-row-4-->
+    <div id="button-row-5" class="button-row">
+      <button type="input" class="buttons linear number" value="0">0</button>
+      <button type="input" class="buttons linear number" value=".">.</button>
+      <button type="input" class="buttons linear action" value="equals">=</button>
+    </div>
+    <!--end of button-row-5-->
+  </div>
+  <!--end of button-container-->
+</div>
+<!--End of calculator-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>       
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>    
+<script type="text/javascript" src="scripts.js"></script>
+</body>
+</html>
