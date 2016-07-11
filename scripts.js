@@ -1,5 +1,5 @@
 $('document').ready(function() {
-
+  
 // Create an object to store all data
 var Memory = {
   entry: 0,
@@ -9,11 +9,17 @@ var Memory = {
   screenState: "",
   runningTotal: 0
 };
+  
 // Create a copy of the Memory object to be used later for CE button functionality
-
-//USE 'NEW' FOR MEMORY?
-
-lastMemory = jQuery.extend(true, {}, Memory);
+var lastMemory = {
+  entry: 0,
+  input: "",
+  lastInput: "",
+  lastAction: "",
+  screenState: "",
+  runningTotal: 0
+};
+  
 // Create an object to store all calculator functions
 var Operators = {
   "percent": function(a, b) {
@@ -44,14 +50,24 @@ function clear(clearType) {
       screenState: "",
       runningTotal: 0
     };
-    lastMemory = jQuery.extend(true, {}, Memory);
+    lastMemory = {
+      input: "",
+      lastInput: "",
+      lastAction: "",
+      screenState: "",
+      runningTotal: 0
+    };
     $("#screen-text").html(Memory.screenState);
     $("#top-left-screen-text").html("");
     return;
   };
   if (clearType === "clearEvent") {
     // If the CE button is pressed, revert the values of Memory to those stored in lastMemory, then update the screen
-    Memory = jQuery.extend(true, {}, lastMemory);
+    for (var prop in lastMemory) {
+    if (lastMemory.hasOwnProperty(prop)) {
+        Memory[prop] = lastMemory[prop];
+      }
+    }
     $("#screen-text").html(Memory.screenState);
     $("#top-left-screen-text").html(Memory.lastAction);
     return;
@@ -66,12 +82,12 @@ function calculator(pressedAction) {
     return;
   };
   // If this is a press of the percent button and running total is not 0, amend input to the percentage of runningTotal and update the screen
-  if (Memory.lastInput !== "" && pressedAction === "percent" && Memory.runningTotal !== 0) {
+  if (Memory.lastInput !== "" && pressedAction === "percent" && Memory.runningTotal !== 0) {    
     $("#screen-text").html(Memory.input = Operators["percent"](Number(Memory.runningTotal), Number(Memory.input)));
     return;
   };
   // If this is the first press of an action button, store the input number and pressed action
-  if (Memory.lastInput === "" && pressedAction !=="equals") {
+  if (Memory.lastInput === "" && pressedAction !=="equals") {  
     Memory.lastInput = Memory.input;
     Memory.lastAction = pressedAction;
     Memory.input = "";
@@ -99,7 +115,7 @@ function calculator(pressedAction) {
   };
   
   // If this is a press of the equals button after < 2 action button presses, update the running total, display, then clear out everything in Memory.
-  if (Memory.lastInput !== "" && pressedAction === "equals" && Memory.runningTotal === 0) {
+  if (Memory.lastInput !== "" && pressedAction === "equals" && Memory.runningTotal === 0) { 
     $("#screen-text").html(Memory.runningTotal += Operators[Memory.lastAction](Number(Memory.lastInput), Number(Memory.input)));
     $("#top-left-screen-text").html = "";
     Memory.input = Memory.runningTotal;
@@ -134,8 +150,13 @@ $('.action').click(function() {
   };
   // Take backup of memory and screen unless this is a press of equals.
   if ($(this).val !== "equals") {
-  lastMemory = jQuery.extend(true, {}, Memory);
-  lastMemory.screenState = $("#screen-text").html;
+    // Backup Memory
+    for (var prop in Memory) {
+    if (Memory.hasOwnProperty(prop)) {
+        lastMemory[prop] = Memory[prop];
+      }
+    }
+  lastMemory.screenState = $("#screen-text").html();
   };
   // Pass action value to calculator function
   calculator($(this).val());

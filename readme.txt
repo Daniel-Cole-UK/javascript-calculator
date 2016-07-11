@@ -16,7 +16,3 @@ Created Using:
 - CSS3
 - Modernizr
 - Google fonts
-
-Future Improvements:
-
-- Improve memory function to allow user to cycle back through operations
